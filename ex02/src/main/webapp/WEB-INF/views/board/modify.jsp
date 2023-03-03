@@ -25,8 +25,8 @@
       
         <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
         <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
-	   <%--  <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
-		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'> --%>
+	    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
       
  
 <div class="form-group">
@@ -106,9 +106,9 @@ $(document).ready(function() {
 	      var pageNumTag = $("input[name='pageNum']").clone();
 	      var amountTag = $("input[name='amount']").clone();
 	      var keywordTag = $("input[name='keyword']").clone();
-	      var typeTag = $("input[name='type']").clone();      
+	      var typeTag = $("input[name='type']").clone();//왜 clone? 불필요한 데이터 제거      
 	      
-	      formObj.empty();
+	      formObj.empty();//데이터 지우고
 	      
 	      formObj.append(pageNumTag);
 	      formObj.append(amountTag);

@@ -4,23 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.BoardMapper">
 
-<!-- 우리가 bno값 확인 불가 -->
-  <select id="getList" resultType="org.zerock.domain.BoardVO">
-		<![CDATA[
-			select * from tbl_board where bno > 0 
-		]]>
-	</select>
-	
-	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
-		<![CDATA[
-			select bno, title, content, writer, regdate, updatedate
-				from (
-					select /*+INDEX_DESC(tbl_board pk_board */
-						rownum rn, bno, title, content, writer, regdate, updatedate
-						from tbl_board
-						where 
-		]]>
-		
+	<sql id = "criteria">
 		<trim prefix = "(" suffix = ") AND" prefixOverrides = "OR">
 			<foreach item = "type" collection="typeArr"> <!-- T W C -->
 				<trim prefix="OR">
@@ -38,11 +22,34 @@
 				</trim>
 			</foreach>
 		</trim>
+		</sql>
+
+<!-- 우리가 bno값 확인 불가 -->
+  <select id="getList" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno > 0 
+		]]>
+	</select>
+	
+	
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+			select bno, title, content, writer, regdate, updatedate
+				from (
+					select /*+INDEX_DESC(tbl_board pk_board */
+						rownum rn, bno, title, content, writer, regdate, updatedate
+						from tbl_board
+						where 
+		]]>
+		
+		<include refid="criteria"></include>
+		
 		<![CDATA[
 				rownum <= #{pageNum} * #{amount}
 			)where rn > (#{pageNum}-1) * #{amount}
 		]]>
 	</select>
+	
 	
 <!-- 객체 안에 bno값이 들어가서 확인 가능  -->
   <insert id="insert">
