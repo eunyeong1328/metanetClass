@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kosa.mapper.BoardMapper">
+	<cache />
+	
+	<insert id="insertBoard" parameterType="Board">
+		insert into board(
+			seq, title, writer, contents, regdate, hitcount
+		)values(
+			board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0
+		)	
+	</insert>
+	
+	<select id="listBoard" resultType="Board" parameterType="Search">
+		select * from board
+		<if test="area != null">
+			<where>
+				<!-- where (title LIKE %JAVA% OR writer LIKE %JAVA%) -->
+				<foreach collection="area" item ="item" open = "(" close = ")" separator="OR">
+				 	${item} LIKE #{searchKey}
+				</foreach>
+			</where>
+		</if>
+		order by seq desc
+	</select>
+		
+	<select id = "detailBoard" resultType="Board" parameterType="int">
+		select  * from board where seq = #{seq}
+	</select>
+	
+	<delete id="deleteDelete"></delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

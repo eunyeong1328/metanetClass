@@ -1,0 +1,2 @@
+module spring_basic {
+}
