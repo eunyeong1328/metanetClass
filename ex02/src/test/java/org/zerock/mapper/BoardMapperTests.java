@@ -21,12 +21,21 @@ public class BoardMapperTests {
 	BoardMapper mapper;
 	
 	@Test
-	public void paging() {
+	public void testSearch() {
 		Criteria cri = new Criteria();
+		cri.setType("TC");
+		
 		List<BoardVO> list = mapper.getListWithPaging(cri);
 		list.forEach(board->log.info(board));
 	}
 	
+//	@Test
+//	public void testpaging() {
+//		Criteria cri = new Criteria();
+//		List<BoardVO> list = mapper.getListWithPaging(cri);
+//		list.forEach(board->log.info(board));
+//	}
+//	
 //	@Test
 //	public void testInsert() {
 //		BoardVO board = new BoardVO();

@@ -16,7 +16,7 @@ public class Criteria {
   private String keyword;
 
   public Criteria() {//1번 페이지를 10개 보겠음
-    this(2, 10);
+    this(1, 10);
   }
 
   public Criteria(int pageNum, int amount) {
