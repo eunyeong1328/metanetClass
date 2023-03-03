@@ -40,10 +40,11 @@
 							<td><c:out value="${board.bno}" /></td>
 							<%-- <td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td> --%>
 
-							<td><a class='move' href='<c:out value="${board.bno}"/>'>
-									<c:out value="${board.title}" />
-							</a></td>
-
+							<td>
+								<a class='move' href='<c:out value="${board.bno}"/>'>
+										<c:out value="${board.title}" />
+								</a>
+							</td>
 							<td><c:out value="${board.writer}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${board.regdate}" /></td>
@@ -128,6 +129,7 @@
 			</div>
 
 			<form id='actionForm' action="/board/list" method='get'>
+			<!--  -->
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 
@@ -216,31 +218,21 @@
 								"click",
 								function(e) {
 
-									e.preventDefault();
+									e.preventDefault(); //기본 이벤트 취소
 
 									console.log('click');
 
 									actionForm.find("input[name='pageNum']")
-											.val($(this).attr("href"));
+											.val($(this).attr("href")); //this는 클릭한 a이다.
 									actionForm.submit();
 								});
 
-						$(".move")
-								.on(
-										"click",
-										function(e) {
-
-											e.preventDefault();
-											actionForm
-													.append("<input type='hidden' name='bno' value='"
-															+ $(this).attr(
-																	"href")
-															+ "'>");
-											actionForm.attr("action",
-													"/board/get");
-											actionForm.submit();
-
-										});
+$(".move").on("click",function(e) {
+		e.preventDefault();
+		actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href") + "'>");
+		actionForm.attr("action","/board/get");
+		actionForm.submit();
+});
 
 						var searchForm = $("#searchForm");
 

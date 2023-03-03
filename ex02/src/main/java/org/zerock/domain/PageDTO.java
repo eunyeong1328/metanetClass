@@ -19,19 +19,19 @@ public class PageDTO {
     this.cri = cri;
     this.total = total;
 
-    this.endPage = (int) (Math.ceil(cri.getPageNum() / 10.0)) * 10;
+    this.endPage = (int) (Math.ceil(cri.getPageNum() / 10.0)) * 10; //끝
 
-    this.startPage = this.endPage - 9;
+    this.startPage = this.endPage - 9; //시작
 
-    int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
+    int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount())); //실제 갯수
 
-    if (realEnd <= this.endPage) {
+    if (realEnd <= this.endPage) { //실제갯수 < 끝페이지
       this.endPage = realEnd;
     }
 
-    this.prev = this.startPage > 1;
+    this.prev = this.startPage > 1;    //Previous
 
-    this.next = this.endPage < realEnd;
+    this.next = this.endPage < realEnd;//Next
   }
   
 }
