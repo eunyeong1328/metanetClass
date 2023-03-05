@@ -20,15 +20,15 @@ public class BoardMapperTests {
 	@Autowired
 	BoardMapper mapper;
 	
-	@Test
-	public void testSearch() {
-		Criteria cri = new Criteria();
-		cri.setType("TC");
-		
-		List<BoardVO> list = mapper.getListWithPaging(cri);
-		list.forEach(board->log.info(board));
-	}
-	
+//	@Test
+//	public void testSearch() {
+//		Criteria cri = new Criteria();
+//		cri.setType("TC");
+//		
+//		List<BoardVO> list = mapper.getListWithPaging(cri);
+//		list.forEach(board->log.info(board));
+//	}
+//	
 //	@Test
 //	public void testpaging() {
 //		Criteria cri = new Criteria();
@@ -49,12 +49,12 @@ public class BoardMapperTests {
 //	}
 //	
 //	
-//	@Test
-//	public void getList() {
-//		List<BoardVO> list = mapper.getList();
-//		list.forEach(board->log.info(board));
-//		
-//	}
+	@Test
+	public void getList() {
+		List<BoardVO> list = mapper.getList();
+		list.forEach(board->log.info(board));
+		
+	}
 //	
 //	@Test
 //	public void detailList() {

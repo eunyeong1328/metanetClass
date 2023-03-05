@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.PostMapper">
+ 	<select id="getList" resultType="org.zerock.domain.PostVO">
+		<![CDATA[
+			select * from POST where post_seq > 0
+		]]>
+	</select>
+	
+	<select id = "read" resultType="org.zerock.domain.PostVO" parameterType="int">
+		select * from POST where post_seq = #{post_seq}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO POST
+		VALUES(#{post_seq},#{post_title},#{post_job},#{post_career},#{post_emptype},#{post_add});
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from POST where post_seq = #{post_seq}
+	</delete>
+	
+	<update id="update">
+		update POST set post_title = #{post_title},
+						post_job = #{post_job},
+		                post_career = #{post_career},
+		                post_emptype=#{post_emptype},
+		                post_add=#{post_add}
+			   			where post_seq = #{post_seq}
+	</update>
+</mapper>
