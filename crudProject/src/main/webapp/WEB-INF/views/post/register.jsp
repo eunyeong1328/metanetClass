@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Board Register</h1>
+    <h1 class="page-header">공고 등록</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -16,23 +16,33 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Register</div>
+      <div class="panel-heading">공고 등록</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
         <form role="form" action="/board/register" method="post">
           <div class="form-group">
-            <label>Title</label> <input class="form-control" name='title'>
+            <label>공고제목</label> <input class="form-control" name='post_title'>
           </div>
 
           <div class="form-group">
-            <label>Text area</label>
-            <textarea class="form-control" rows="3" name='content'></textarea>
+            <label>직종</label>
+            <textarea class="form-control" rows="3" name='post_job'></textarea>
           </div>
 
           <div class="form-group">
-            <label>Writer</label> <input class="form-control" name='writer'>
+            <label>경력구분</label> <input class="form-control" name='post_career'>
           </div>
+          
+           <div class="form-group">
+            <label>고용형태</label> <input class="form-control" name='post_emptype'>
+          </div>
+          
+          
+           <div class="form-group">
+            <label>근무지</label> <input class="form-control" name='post_add'>
+          </div>
+          
           <button type="submit" class="btn btn-default">Submit
             Button</button>
           <button type="reset" class="btn btn-default">Reset Button</button>

@@ -46,11 +46,13 @@ public class PostController {
 	
 	
 	@PostMapping("/modify")
-	public String modify(PostVO post,  RedirectAttributes rttr) {
+	public String modify(PostVO post,  RedirectAttributes rttr, Model model) {
 		
 		if(service.modify(post)) {
 			rttr.addFlashAttribute("result","success");
 		}
+		
+		model.addAttribute("post",service.read(post.getPost_seq()));
 		
 		rttr.addAttribute("post_title",post.getPost_title());
 		rttr.addAttribute("post_job",post.getPost_job());

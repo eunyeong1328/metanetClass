@@ -26,11 +26,12 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>#번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>수정일</th>
+							<th>공고번호</th>
+							<th>공고제목</th>
+							<th>직종</th>
+							<th>경력구분</th>
+							<th>고용형태</th>
+							<th>근무지</th>
 						</tr>
 					</thead>
 
@@ -39,7 +40,7 @@
 							<td><c:out value="${post.post_seq}" /></td>
 
 							<td>
-								<a class='move' href='<c:out value="${post.post_seq}"/>'>
+								<a class='move' href='<c:out value="${post.post_title}"/>'>
 										<c:out value="${post.post_title}" />
 								</a>
 							</td>
@@ -53,19 +54,6 @@
 
 
 			</div>
-
-			<form id='actionForm' action="/board/list" method='get'>
-			<!--  -->
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-
-				<input type='hidden' name='type'
-					value='<c:out value="${ pageMaker.cri.type }"/>'> <input
-					type='hidden' name='keyword'
-					value='<c:out value="${ pageMaker.cri.keyword }"/>'>
-
-
-			</form>
 
 
 		</div>
@@ -109,7 +97,7 @@
 
 						$("#regBtn").on("click", function() {
 
-							self.location = "/board/register";
+							self.location = "/post/register";
 
 						});
 
@@ -135,23 +123,7 @@ $(".move").on("click",function(e) {
 		actionForm.submit();
 });
 
-	var searchForm = $("#searchForm");
-
-	$("#searchForm button").on("click",
-			function(e) {
-				if (!searchForm.find("option:selected").val()) {
-					alert("검색종류를 선택하세요");
-					return false;
-				}
-				if (!searchForm.find("input[name='keyword']").val()) {
-					alert("키워드를 입력하세요");
-					return false;
-				}//검색을 하면 1번페이지로 간다, 내가 정하는 것
-				searchForm.find("input[name='pageNum']").val("1");
-				e.preventDefault();
-				searchForm.submit();
-			});
-	});
+	v
 </script>
 
 

@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Board Read</h1>
+    <h1 class="page-header">공고별 상세 페이지</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -16,29 +16,39 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Read Page</div>
+      <div class="panel-heading">공고별 상세 페이지</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
           <div class="form-group">
-          <label>Bno</label> <input class="form-control" name='bno'
-            value='<c:out value="${board.bno }"/>' readonly="readonly">
+          <label>공고번호</label> <input class="form-control" name='post_seq'
+            value='<c:out value="${post.post_seq }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
-          <label>Title</label> <input class="form-control" name='title'
-            value='<c:out value="${board.title }"/>' readonly="readonly">
+          <label>공고제목</label> <input class="form-control" name='post_title'
+            value='<c:out value="${post.post_title }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
-          <label>Text area</label>
-          <textarea class="form-control" rows="3" name='content'
-            readonly="readonly"><c:out value="${board.content}" /></textarea>
+          <label>직종</label>
+          <textarea class="form-control" rows="3" name='post_job'
+            readonly="readonly"><c:out value="${post.post_job}" /></textarea>
         </div>
 
         <div class="form-group">
-          <label>Writer</label> <input class="form-control" name='writer'
-            value='<c:out value="${board.writer }"/>' readonly="readonly">
+          <label>경력구분</label> <input class="form-control" name='post_career'
+            value='<c:out value="${post.post_career }"/>' readonly="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>고용형태</label> <input class="form-control" name='post_emptype'
+            value='<c:out value="${post.post_emptype }"/>' readonly="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>근무지</label> <input class="form-control" name='post_add'
+            value='<c:out value="${post.post_add }"/>' readonly="readonly">
         </div>
 
 <%-- 		<button data-oper='modify' class="btn btn-default">
@@ -47,21 +57,13 @@
         <a href="/board/list">List</a></button> --%>
 
 
-<button data-oper='modify' class="btn btn-default">Modify</button>
-<button data-oper='list' class="btn btn-info">List</button>
-
-<%-- <form id='operForm' action="/boad/modify" method="get">
-  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
-</form> --%>
+<button data-oper='modify' class="btn btn-default">수정</button>
+<button data-oper='list' class="btn btn-info">목록보기</button>
 
 
 <form id='operForm' action="/boad/modify" method="get">
-  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
-  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
-  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
-  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
-  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
- 
+  <input type='hidden' id='post_seq' name='post_seq' value='<c:out value="${post.post_seq}"/>'>
+
 </form>
 
 
@@ -83,15 +85,15 @@ $(document).ready(function() {
   
   $("button[data-oper='modify']").on("click", function(e){
     
-    operForm.attr("action","/board/modify").submit();
+    operForm.attr("action","/post/modify").submit();
     
   });
   
     
   $("button[data-oper='list']").on("click", function(e){
     
-    operForm.find("#bno").remove();
-    operForm.attr("action","/board/list")
+    operForm.find("#post_seq").remove();
+    operForm.attr("action","/post/list")
     operForm.submit();
     
   });  
