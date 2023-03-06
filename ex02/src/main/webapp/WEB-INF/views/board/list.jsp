@@ -214,18 +214,13 @@
 
 						var actionForm = $("#actionForm");
 
-						$(".paginate_button a").on(
-								"click",
-								function(e) {
-
-									e.preventDefault(); //기본 이벤트 취소
-
-									console.log('click');
-
-									actionForm.find("input[name='pageNum']")
-											.val($(this).attr("href")); //this는 클릭한 a이다.
-									actionForm.submit();
-								});
+$(".paginate_button a").on("click",
+		function(e) {
+			e.preventDefault(); //기본 이벤트 취소
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href")); //this는 클릭한 a이다.
+			actionForm.submit();
+});
 
 $(".move").on("click",function(e) {
 		e.preventDefault();
