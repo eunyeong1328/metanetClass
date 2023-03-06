@@ -39,20 +39,20 @@ public class BoardControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();//가상의 tomcat과 같은 역할
 	}
 	
-	@Test
-	public void testListPaging()throws Exception{
-		log.info( //컨트롤러 실행
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
-						.param("pageNum","2")
-						.param("amount","10")
-					)
-					.andReturn()
-					.getModelAndView()
-					.getModelMap()
-				);
-	}
-	
-	
+//	@Test
+//	public void testListPaging()throws Exception{
+//		log.info( //컨트롤러 실행
+//				mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+//						.param("pageNum","2")
+//						.param("amount","10")
+//					)
+//					.andReturn()
+//					.getModelAndView()
+//					.getModelMap()
+//				);
+//	}
+//	
+//	
 //	@Test
 //	public void testList()throws Exception{
 //		log.info( //컨트롤러 실행
@@ -63,17 +63,17 @@ public class BoardControllerTests {
 //				);
 //	}
 //	
-//	@Test
-//	public void testRegister()throws Exception{
-//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-//				.param("title","테스트 새글 제목")
-//				.param("content", "테스트 새글 내용")
-//				.param("writer","user00"))
-//				.andReturn()
-//				.getModelAndView().getViewName();
-//		
-//		log.info(resultPage);
-//	}
+	@Test
+	public void testRegister()throws Exception{
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
+				.param("title","테스트 새글 제목")
+				.param("content", "테스트 새글 내용")
+				.param("writer","user00"))
+				.andReturn()
+				.getModelAndView().getViewName();
+		
+		log.info(resultPage);
+	}
 //	
 //	@Test
 //	public void testGet()throws Exception{
