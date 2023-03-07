@@ -126,15 +126,21 @@
 $(function(){
 	
 	var bnoValue = '<c:out value ="${board.bno}" />';
-	replyService.add(
+	/* replyService.add(
 		{bno:bnoValue, reply:"JS Test", replyer:"tester"}
 		,
 		function(result){
 			alert("result: " + result);
 		}
-	);
-	//console.log(replyService.add());
-})
+	);  */
+	
+	 /* replyService.getList({bno:bnoValue, page:1},function(list){
+		for(var i=0, len=list.length||0; i<len; i++ ){
+			console.log(list[i]);
+		}
+	})  */
+	console.log(replyService.add());
+});
 
 </script>
 

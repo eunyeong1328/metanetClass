@@ -7,7 +7,7 @@ var replyService = (function(){
 		
 		$.ajax({
 			type: 'post',
-			url: '/replies/view',
+			url: '/replies/new',
 			data: JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr){
@@ -21,8 +21,25 @@ var replyService = (function(){
 				}	
 			}
 			
-		});
+		})
+	}//end add()
+	
+	function getList(param, callback, error){
+		var bno = param.bno;
+		var page = param.page||1;
+		
+			$.getJSON('/replies/pages/' + bno + '/' + page,
+			function(data){
+				if(callback){
+					callback(data);
+				}	
+			}).fail(function(xhr,status,er){
+				if(error){
+					error();
+				}
+			});
 	}
 	
-	return {add: add}; 
+	return {add: add,
+			getList: getList}; 
 })();
