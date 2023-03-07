@@ -132,14 +132,34 @@ $(function(){
 		function(result){
 			alert("result: " + result);
 		}
-	);  */
-	
+	);  
+	console.log(replyService.add());
+	*/
 	 /* replyService.getList({bno:bnoValue, page:1},function(list){
 		for(var i=0, len=list.length||0; i<len; i++ ){
 			console.log(list[i]);
 		}
 	})  */
-	console.log(replyService.add());
+	
+	/* replyService.remove(3, function(data){
+		if(data === "success"){
+			alert("REMOVE");
+		}
+	}, function(err){
+		alert('ERROR.....');
+	}); */
+	
+	/* replyService.update({
+		rno : 5,
+		bno : 13,
+		reply : "Modified Reply...."
+	},function(){
+		alert("수정완료");
+	}); */
+	
+	replyService.get(6, function(data){
+		console.log(data);
+	});
 });
 
 </script>
