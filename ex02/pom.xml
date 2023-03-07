@@ -169,16 +169,23 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- db end -->
+		
 		   <dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
 			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 			<version>1.16</version>
 		</dependency>
-		
+		<!-- 구글 json 라이브러리 -->
 		<dependency>
     <groupId>com.google.code.gson</groupId>
     <artifactId>gson</artifactId>
     <version>2.8.2</version>
+</dependency>
+<!--  post맨 주소값 json 필요한 데이터바인더 -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.14.2</version>
 </dependency>
 	</dependencies>
     <build>
