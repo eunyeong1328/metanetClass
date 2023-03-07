@@ -126,6 +126,43 @@
 $(function(){
 	
 	var bnoValue = '<c:out value ="${board.bno}" />';
+	var replyUL = $(".chat");
+	
+	showList(1);
+	
+	function showList(page){
+	      
+	      replyService.getList({bno:bnoValue,page: page|| 1 }, function(list) {
+	        
+	        var str="";
+	       if(list == null || list.length == 0){
+	        
+	        replyUL.html("");
+	        
+	        return;
+	      }
+	       for (var i = 0, len = list.length || 0; i < len; i++) {
+	           str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+	           str +="  <div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>"; 
+	           str +="    <small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
+	           str +="    <p>"+list[i].reply+"</p></div></li>";
+	         }
+
+
+	    replyUL.html(str);
+
+	      });//end function
+	      
+	   }
+	
+	 var modal = $(".modal");
+	    var modalInputReply = modal.find("input[name='reply']");
+	    var modalInputReplyer = modal.find("input[name='replyer']");
+	    var modalInputReplyDate = modal.find("input[name='replyDate']");
+	    
+	    var modalModBtn = $("#modalModBtn");
+	    var modalRemoveBtn = $("#modalRemoveBtn");
+	    var modalRegisterBtn = $("#modalRegisterBtn");
 	/* replyService.add(
 		{bno:bnoValue, reply:"JS Test", replyer:"tester"}
 		,
@@ -135,11 +172,11 @@ $(function(){
 	);  
 	console.log(replyService.add());
 	*/
-	 /* replyService.getList({bno:bnoValue, page:1},function(list){
+	/* replyService.getList({bno:bnoValue, page:1},function(list){
 		for(var i=0, len=list.length||0; i<len; i++ ){
 			console.log(list[i]);
 		}
-	})  */
+	})   */
 	
 	/* replyService.remove(3, function(data){
 		if(data === "success"){
@@ -157,9 +194,9 @@ $(function(){
 		alert("수정완료");
 	}); */
 	
-	replyService.get(6, function(data){
+	/* replyService.get(6, function(data){
 		console.log(data);
-	});
+	}); */
 });
 
 </script>
