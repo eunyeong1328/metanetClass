@@ -200,6 +200,28 @@ $(function(){
 	      });
 	});
 	
+	//댓글 조회 클릭 이벤트 처리 
+    $(".chat").on("click", "li", function(e){
+      
+      var rno = $(this).data("rno");
+      
+      replyService.get(rno, function(reply){//데이터를 뽑아오는 용도
+      
+        modalInputReply.val(reply.reply);
+        modalInputReplyer.val(reply.replyer);
+        modalInputReplyDate.val(replyService.displayTime( reply.replyDate))
+        .attr("readonly","readonly");
+        modal.data("rno", reply.rno);//데이터를 넣는 용도 - 데이터 수정, 삭제를 위한 용도
+        
+        modal.find("button[id !='modalCloseBtn']").hide();
+        modalModBtn.show();
+        modalRemoveBtn.show();
+        
+        $(".modal").modal("show"); //모달창 활성화
+            
+      });
+    });
+  
 	
 	/* replyService.add(
 		{bno:bnoValue, reply:"JS Test", replyer:"tester"}
