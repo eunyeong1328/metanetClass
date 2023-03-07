@@ -155,14 +155,52 @@ $(function(){
 	      
 	   }
 	
-	 var modal = $(".modal");
-	    var modalInputReply = modal.find("input[name='reply']");
-	    var modalInputReplyer = modal.find("input[name='replyer']");
-	    var modalInputReplyDate = modal.find("input[name='replyDate']");
-	    
-	    var modalModBtn = $("#modalModBtn");
-	    var modalRemoveBtn = $("#modalRemoveBtn");
-	    var modalRegisterBtn = $("#modalRegisterBtn");
+	var modal = $(".modal");
+    var modalInputReply = modal.find("input[name='reply']");
+    var modalInputReplyer = modal.find("input[name='replyer']");
+    var modalInputReplyDate = modal.find("input[name='replyDate']");
+    
+    var modalModBtn = $("#modalModBtn");
+    var modalRemoveBtn = $("#modalRemoveBtn");
+    var modalRegisterBtn = $("#modalRegisterBtn");
+    
+    $("#modalCloseBtn").on("click", function(e){
+    	
+    	modal.modal('hide');
+    });
+	
+	$("#addReplyBtn").on("click", function(e){
+	      
+	      modal.find("input").val("");
+	      modalInputReplyDate.closest("div").hide();
+	      modal.find("button[id !='modalCloseBtn']").hide();
+	      
+	      modalRegisterBtn.show();
+	      
+	      $(".modal").modal("show");
+	      
+	    });
+	
+	modalRegisterBtn.on("click",function(e){
+		var reply = {
+	            reply: modalInputReply.val(),
+	            replyer:modalInputReplyer.val(),
+	            bno:bnoValue
+	          };
+	      replyService.add(reply, function(result){
+	        
+	        alert(result);
+	        
+	        modal.find("input").val("");
+	        modal.modal("hide");
+	        
+	        //showList(1);
+	        showList(-1);
+	        
+	      });
+	});
+	
+	
 	/* replyService.add(
 		{bno:bnoValue, reply:"JS Test", replyer:"tester"}
 		,
