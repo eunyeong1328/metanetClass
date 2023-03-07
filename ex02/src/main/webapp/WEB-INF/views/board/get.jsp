@@ -130,6 +130,11 @@ $(function(){
 	
 	showList(1);
 	
+	$(window).on('pageshow',function(){
+		var actionForm = $("#actionForm");
+		actionForm.find('input[name="bno"]').remove();
+	});
+	
 	function showList(page){
 	      
 	      replyService.getList({bno:bnoValue,page: page|| 1 }, function(list) {
@@ -204,6 +209,8 @@ $(function(){
     $(".chat").on("click", "li", function(e){
       
       var rno = $(this).data("rno");
+      
+      
       
       replyService.get(rno, function(reply){//데이터를 뽑아오는 용도
       
