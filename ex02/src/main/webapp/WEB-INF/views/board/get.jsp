@@ -123,7 +123,18 @@
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
 <script>
-
+$(function(){
+	
+	var bnoValue = '<c:out value ="${board.bno}" />';
+	replyService.add(
+		{bno:bnoValue, reply:"JS Test", replyer:"tester"}
+		,
+		function(result){
+			alert("result: " + result);
+		}
+	);
+	//console.log(replyService.add());
+})
 
 </script>
 

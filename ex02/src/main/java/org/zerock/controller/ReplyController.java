@@ -17,9 +17,9 @@ import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
-import lombok.AllArgsConstructor;
-import lombok.Delegate;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @RestController
 @RequestMapping("/replies/")
 public class ReplyController {
@@ -29,10 +29,10 @@ public class ReplyController {
 
 	@PostMapping("/new")
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
-//		log.info("ReplyVo: " + vo);//url요청 확인용
+		log.info("ReplyVo: " + vo);//url요청 확인용
 
 		int insertCount = service.register(vo);
-//		log.info("Reply INSERT COUNT: " + insertCount);
+		log.info("Reply INSERT COUNT: " + insertCount);
 
 		return insertCount == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);// ok시 200전달
@@ -40,14 +40,14 @@ public class ReplyController {
 
 	@GetMapping("/{rno}")
 	public ResponseEntity<ReplyVO> get(@PathVariable("rno") Long rno) {
-//		log.info("get:" + rno);
+		log.info("get:" + rno);
 
 		return new ResponseEntity<ReplyVO>(service.get(rno), HttpStatus.OK);
 	}
 
 	@GetMapping("/pages/{bno}/{page}") // bno글하나 /
 	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno) {
-//		log.info("getList.....");
+		log.info("getList.....");
 		Criteria cri = new Criteria(page, 10);
 		return new ResponseEntity<List<ReplyVO>>(service.getList(cri, bno), HttpStatus.OK);
 	}
