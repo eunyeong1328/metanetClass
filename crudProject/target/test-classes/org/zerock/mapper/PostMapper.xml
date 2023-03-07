@@ -4,9 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.PostMapper">
  	<select id="getList" resultType="org.zerock.domain.PostVO">
-		<![CDATA[
-			select * from POST where post_seq > 0
-		]]>
+			select * from POST 
 	</select>
 	
 	<select id = "read" resultType="org.zerock.domain.PostVO" parameterType="int">

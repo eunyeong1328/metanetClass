@@ -70,60 +70,6 @@
 
 
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-
-						var result = '<c:out value="${result}"/>';
-
-						checkModal(result);
-
-						history.replaceState({}, null, null);//history안을 초기화시킴
-
-						function checkModal(result) {
-
-							if (result === '' || history.state) {
-								return;
-							}
-
-							if (parseInt(result) > 0) {
-								$(".modal-body").html(
-										"게시글 " + parseInt(result)
-												+ " 번이 등록되었습니다.");
-							}
-
-							$("#myModal").modal("show");
-						}
-
-						$("#regBtn").on("click", function() {
-
-							self.location = "/post/register";
-
-						});
-
-						var actionForm = $("#actionForm");
-
-						$(".paginate_button a").on(
-								"click",
-								function(e) {
-
-									e.preventDefault(); //기본 이벤트 취소
-
-									console.log('click');
-
-									actionForm.find("input[name='pageNum']")
-											.val($(this).attr("href")); //this는 클릭한 a이다.
-									actionForm.submit();
-								});
-
-$(".move").on("click",function(e) {
-		e.preventDefault();
-		actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href") + "'>");
-		actionForm.attr("action","/board/get");
-		actionForm.submit();
-});
-
-	v
 </script>
 
 
