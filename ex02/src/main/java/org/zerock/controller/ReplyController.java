@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
 import lombok.AllArgsConstructor;
+import lombok.Delegate;
 
 @RestController
 @RequestMapping("/replies/")
@@ -45,7 +47,7 @@ public class ReplyController {
 
 	@GetMapping("/pages/{bno}/{page}") // bno글하나 /
 	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno) {
-		log.info("getList.....");
+//		log.info("getList.....");
 		Criteria cri = new Criteria(page, 10);
 		return new ResponseEntity<List<ReplyVO>>(service.getList(cri, bno), HttpStatus.OK);
 	}
@@ -57,5 +59,10 @@ public class ReplyController {
 		return service.modify(vo) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
+	
+	@DeleteMapping("/{rno}")
+	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
+		return service.remove(rno) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
+				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
