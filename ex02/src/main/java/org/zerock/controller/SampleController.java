@@ -32,7 +32,4 @@ public class SampleController {
 	public void accessDenied(Authentication auth, Model model) {
 		model.addAttribute("msg","Access Denied");
 	}
-
-
-
 }
