@@ -11,6 +11,9 @@
 		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
 		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_AMDIN')"/>
 		
+		<security:access-denied-handler error-page="/sample/accessError"/>
+		
+		
 		<security:form-login/>
 	</security:http>
 	
